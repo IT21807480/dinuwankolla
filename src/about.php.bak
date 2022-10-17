@@ -1,0 +1,76 @@
+<?php
+$companyName = "ABC Mobiles";
+echo "<h2>About ".$companyName."</h2>";
+echo "<br>";
+echo "This page is mainly about the ".$companyName. " website";
+echo "<br>";
+
+$sold = 75;
+$total = 100;
+
+echo "<br>The Shopping Cart <br>";
+echo "No. of Sold Items : ".$sold."<br>";
+echo "No. of total Items : ".$total."<br>";
+
+echo "<br>";
+
+$percentage;
+$percentageSold;
+
+function findPercentage(){     
+	global $percentage , $sold , $total;                     //global variable
+	
+	$percentage = ($sold / $total) * 100;     //calculate percenatge
+	
+	return $percentage;
+	
+}
+
+$percentageSold = findPercentage();         //calling function
+
+echo "Percentage of sold items : ".$percentageSold."%<br>";
+
+$today = date("y-m-d");
+$status;
+$todayDate = date_create($today);
+$shipDay = date_create("2019-09-21");
+
+echo "<br>";
+
+function ShipDate(){
+	global $today , $status , $shipDay;
+	
+	$datediff = date_diff($todayDate , $shipDay);
+	
+	if($datediff ->format("%R%a") < 0){
+		$status = "SHIPPED";
+		
+	}else{
+		$status = "TO BE SHIPPED";
+		
+	}
+	
+}
+
+ShipDate();             //calling date function
+
+echo "For ".$today." 24 items has ".$status."<br>";
+
+echo "<br>";
+
+function loopUsingFor(){
+	$phones = array("Iphone Xs" , "Iphone X" , "Iphone XS Max" , "Iphone XR");
+	$soldQty = array(27 , 30 , 12 , 29);
+	
+	for($i = 0 ; $i < 4 ; $i++){
+		echo $phones[$i]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$soldQty[$i];
+		echo "<br>";
+		
+	}
+	
+}
+
+loopUsingFor();
+
+
+?>
